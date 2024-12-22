@@ -1,7 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from core.models import Task
 
@@ -22,7 +22,14 @@ def toggle_status(request, task_id):
 class CreateTaskView(CreateView):
     model = Task
     fields = ["tags", "content", "deadline", "is_completed"]
-    template_name = "create_task_form.html"
+    template_name = "task_form.html"
+    success_url = reverse_lazy("core:home")
+
+
+class UpdateTaskView(UpdateView):
+    model = Task
+    fields = ["tags", "content", "deadline", "is_completed"]
+    template_name = "task_form.html"
     success_url = reverse_lazy("core:home")
 
 

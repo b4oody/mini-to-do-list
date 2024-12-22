@@ -13,10 +13,6 @@
     <ul class="todo-list">
       {% for task in tasks %}
         <li>
-          <span><strong>Tag:</strong>: {{ task.tags.all|join:", " }}</span>
-          <span><strong>Task:</strong>:{{ task.content }}</span>
-          <span><strong>Deadline:</strong>{{ task.deadline }}</span>
-          <span><strong>Created at:</strong>{{ task.created_at }}</span>
           <form action="{% url 'core:toggle_status' task.id %}" method="post" style="display: inline;">
             {% csrf_token %}
             <button
@@ -25,6 +21,16 @@
               {{ task.status_display }}
             </button>
           </form>
+          <span><strong>Tag:</strong>{{ task.tags.all|join:", " }}</span>
+          <span><strong>Task:</strong>{{ task.content }}</span>
+          <span><strong>Deadline:</strong>{{ task.deadline }}</span>
+          <span><strong>Created at:</strong>{{ task.created_at }}</span>
+
+          <div style="margin-top: 10px">
+            <a class="update" href="{% url 'core:update-task' task.pk %}">Редагувати</a>
+            <a class="delete" href="#">Видалити</a>
+          </div>
+
         </li>
       {% endfor %}
     </ul>
