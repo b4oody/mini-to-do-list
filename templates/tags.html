@@ -16,7 +16,7 @@
         <li>
           <h3>{{ tag.name }}</h3>
           <div style="margin-top: 10px">
-            <a class="update" href="#">Редагувати</a>
+            <a class="update" href="{% url 'core:update-tag' tag.pk %}">Редагувати</a>
             <form action="#" method="post" style="display: inline;">
               {% csrf_token %}
               <button type="submit" class="delete">Delete</button>

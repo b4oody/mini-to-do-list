@@ -52,3 +52,10 @@ class CreateTagView(CreateView):
     fields = "__all__"
     template_name = "tag_form.html"
     success_url = reverse_lazy("core:tags")
+
+
+class UpdateTagView(UpdateView):
+    model = Tag
+    fields = "__all__"
+    template_name = "task_form.html"
+    success_url = reverse_lazy("core:tags")
