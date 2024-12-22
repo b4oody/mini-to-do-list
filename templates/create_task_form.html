@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Створення завдання</title>
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <form action="" method="post" class="form">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit">Створити</button>
+      <button type="button" onclick="window.history.back();" class="btn">Назад</button>
+    </form>
+  </div>
+{% endblock %}

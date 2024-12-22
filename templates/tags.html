@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <div class="content">
+    <h2>Tags</h2>
+    <div class="input-group">
+      <input type="text" class="tag-input" placeholder="Add a new tag...">
+      <button class="add-btn">Add Tag</button>
+    </div>
+    <ul class="tags-list">
+      <li>
+        <span>Tag 1</span>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </li>
+      <li>
+        <span>Tag 2</span>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </li>
+    </ul>
+  </div>
+{% endblock %}

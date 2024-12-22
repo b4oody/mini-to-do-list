@@ -26,4 +26,5 @@ class CreateTaskView(CreateView):
     success_url = reverse_lazy("core:home")
 
 
-
+def tags_page_view(request: HttpRequest) -> HttpResponse:
+    return render(request, "tags.html")
