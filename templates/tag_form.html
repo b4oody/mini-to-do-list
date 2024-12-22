@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+  <title>{{ object|yesno:"Редагування,Створення" }} тег</title>
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <form action="" method="post" class="form">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit">{{ object|yesno:"Редагувати,Створити" }}</button>
+      <button type="button" onclick="window.history.back();" class="btn">Назад</button>
+    </form>
+  </div>
+{% endblock %}

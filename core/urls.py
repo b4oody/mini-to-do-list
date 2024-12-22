@@ -7,6 +7,7 @@ from core.views import (
     CreateTaskView,
     UpdateTaskView,
     DeleteTaskView,
+    CreateTagView,
 )
 
 urlpatterns = [
@@ -16,5 +17,6 @@ urlpatterns = [
     path("update-task/<int:pk>/", UpdateTaskView.as_view(), name="update-task"),
     path("delete/<int:pk>/", DeleteTaskView.as_view(), name="delete-task"),
     path("tags/", tags_page_view, name="tags"),
+    path("create-tag/", CreateTagView.as_view(), name="create-tag"),
 ]
 app_name = "mini_to_do_list"

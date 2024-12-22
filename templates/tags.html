@@ -5,20 +5,25 @@
   <div class="content">
     <h2>Tags</h2>
     <div class="input-group">
-      <input type="text" class="tag-input" placeholder="Add a new tag...">
-      <button class="add-btn">Add Tag</button>
+
+      <div class="input-group">
+        <a href="{% url 'core:create-tag' %}" class="add-btn">Add Tag</a>
+      </div>
+      
     </div>
     <ul class="tags-list">
-      <li>
-        <span>Tag 1</span>
-        <button class="edit-btn">Edit</button>
-        <button class="delete-btn">Delete</button>
-      </li>
-      <li>
-        <span>Tag 2</span>
-        <button class="edit-btn">Edit</button>
-        <button class="delete-btn">Delete</button>
-      </li>
+      {% for tag in tags %}
+        <li>
+          <h3>{{ tag.name }}</h3>
+          <div style="margin-top: 10px">
+            <a class="update" href="#">Редагувати</a>
+            <form action="#" method="post" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="delete">Delete</button>
+            </form>
+          </div>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 {% endblock %}

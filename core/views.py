@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 
-from core.models import Task
+from core.models import Task, Tag
 
 
 def home_page_view(request: HttpRequest) -> HttpResponse:
@@ -39,4 +39,16 @@ class DeleteTaskView(DeleteView):
 
 
 def tags_page_view(request: HttpRequest) -> HttpResponse:
-    return render(request, "tags.html")
+    tags = Tag.objects.all()
+    return render(
+        request,
+        "tags.html",
+        context={"tags": tags}
+    )
+
+
+class CreateTagView(CreateView):
+    model = Tag
+    fields = "__all__"
+    template_name = "tag_form.html"
+    success_url = reverse_lazy("core:tags")
