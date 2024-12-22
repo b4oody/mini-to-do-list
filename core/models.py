@@ -13,7 +13,7 @@ class Tag(models.Model):
 class Task(models.Model):
     content = models.CharField(max_length=255, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    deadline = models.DateTimeField()
+    deadline = models.DateField()
     is_completed = models.BooleanField(default=False)
     tags = models.ManyToManyField(
         Tag,
@@ -25,6 +25,9 @@ class Task(models.Model):
 
     def status_display(self):
         return "Виконано" if self.is_completed else "У процесі"
+
+    def status_class(self):
+        return "active" if self.is_completed else "inactive"
 
     def clean(self):
         super().clean()
