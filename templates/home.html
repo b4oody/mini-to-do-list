@@ -10,6 +10,17 @@
     <div class="input-group">
       <a href="{% url 'core:create-task' %}" class="add-btn">Add Task</a>
     </div>
+    <form method="get" action="{% url 'core:home' %}">
+      <div class="filter-section">
+        <label for="status-filter">Фільтр за статусом:</label>
+        <select name="status" onchange="this.form.submit()">
+          {% for status_value, status_label in form.fields.status.choices %}
+            <option value="{{ status_value }}"
+                    {% if request.GET.status == status_value %}selected{% endif %}>{{ status_label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
     <ul class="todo-list">
       {% for task in page_obj %}
         <li>

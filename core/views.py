@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 
+from core.form import StatusFilterForm
 from core.models import Task, Tag
 
 
@@ -27,12 +28,20 @@ def pagination(request: HttpRequest, queryset, items_per_page=5):
 
 def home_page_view(request: HttpRequest) -> HttpResponse:
     tasks = Task.objects.prefetch_related("tags__tasks")
+    form = StatusFilterForm(request.GET)
+    if form.is_valid():
+        status = form.cleaned_data.get("status")
+        if status and status != "all":
+            if status == "completed":
+                tasks = tasks.filter(is_completed=True)
+            elif status == "active":
+                tasks = tasks.filter(is_completed=False)
     page_obj = pagination(
         request=request,
         queryset=tasks,
         items_per_page=5
     )
-    context = {"page_obj": page_obj}
+    context = {"page_obj": page_obj, "form": form}
     return render(request, "home.html", context=context)
 
 
