@@ -1,7 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from core.models import Task
 
@@ -30,6 +30,11 @@ class UpdateTaskView(UpdateView):
     model = Task
     fields = ["tags", "content", "deadline", "is_completed"]
     template_name = "task_form.html"
+    success_url = reverse_lazy("core:home")
+
+
+class DeleteTaskView(DeleteView):
+    model = Task
     success_url = reverse_lazy("core:home")
 
 

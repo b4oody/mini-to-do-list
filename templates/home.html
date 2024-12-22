@@ -28,7 +28,10 @@
 
           <div style="margin-top: 10px">
             <a class="update" href="{% url 'core:update-task' task.pk %}">Редагувати</a>
-            <a class="delete" href="#">Видалити</a>
+            <form action="{% url 'core:delete-task' task.id %}" method="post" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="delete">Delete</button>
+            </form>
           </div>
 
         </li>
