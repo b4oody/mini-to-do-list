@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -6,9 +7,32 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from core.models import Task, Tag
 
 
+def pagination(request: HttpRequest, queryset, items_per_page=5):
+    """
+    Функція для пагінації.
+
+    Аргументи:
+    request: HttpRequest - об'єкт запиту.
+    queryset: QuerySet або список - дані, які потрібно розбити на сторінки.
+    items_per_page: int - кількість елементів на сторінку (за замовчуванням 5).
+
+    Повертає:
+        page_obj: об'єкт пагінації для шаблону.
+    """
+    paginator = Paginator(queryset, items_per_page)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return page_obj
+
+
 def home_page_view(request: HttpRequest) -> HttpResponse:
     tasks = Task.objects.prefetch_related("tags__tasks")
-    context = {"tasks": tasks}
+    page_obj = pagination(
+        request=request,
+        queryset=tasks,
+        items_per_page=5
+    )
+    context = {"page_obj": page_obj}
     return render(request, "home.html", context=context)
 
 
@@ -40,10 +64,15 @@ class DeleteTaskView(DeleteView):
 
 def tags_page_view(request: HttpRequest) -> HttpResponse:
     tags = Tag.objects.all()
+    page_obj = pagination(
+        request=request,
+        queryset=tags,
+        items_per_page=3
+    )
     return render(
         request,
         "tags.html",
-        context={"tags": tags}
+        context={"page_obj": page_obj}
     )
 
 

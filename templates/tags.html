@@ -9,10 +9,10 @@
       <div class="input-group">
         <a href="{% url 'core:create-tag' %}" class="add-btn">Add Tag</a>
       </div>
-      
+
     </div>
     <ul class="tags-list">
-      {% for tag in tags %}
+      {% for tag in page_obj %}
         <li>
           <h3>{{ tag.name }}</h3>
           <div style="margin-top: 10px">
@@ -25,5 +25,8 @@
         </li>
       {% endfor %}
     </ul>
+    {% block pagination %}
+      {% include "includes/pagination/pagination.html" %}
+    {% endblock %}
   </div>
 {% endblock %}

@@ -295,3 +295,62 @@ a.delete:hover {
 .form input[type="submit"] + input[type="reset"] {
     margin-left: 10px;
 }
+
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+
+.pagination .step-links a {
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #0078D4;
+    border-radius: 3px;
+    background-color: #0078D4;
+    color: #fff;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.pagination .step-links a:hover {
+    background-color: #0056A4;
+    color: #fff;
+}
+
+
+.pagination .current {
+    margin: 0 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    background-color: #e9ecef;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+
+.pagination .step-links a:disabled {
+    background-color: #ccc;
+    border-color: #999;
+    color: #666;
+    cursor: not-allowed;
+}
+
+
+.pagination .step-links a:first-of-type,
+.pagination .step-links a:last-of-type {
+    font-weight: bold;
+}

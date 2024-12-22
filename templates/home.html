@@ -11,7 +11,7 @@
       <a href="{% url 'core:create-task' %}" class="add-btn">Add Task</a>
     </div>
     <ul class="todo-list">
-      {% for task in tasks %}
+      {% for task in page_obj %}
         <li>
           <form action="{% url 'core:toggle_status' task.id %}" method="post" style="display: inline;">
             {% csrf_token %}
@@ -37,5 +37,8 @@
         </li>
       {% endfor %}
     </ul>
+    {% block pagination %}
+      {% include "includes/pagination/pagination.html" %}
+    {% endblock %}
   </div>
 {% endblock %}
