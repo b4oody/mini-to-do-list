@@ -24,7 +24,7 @@ class Task(models.Model):
         ordering = ["is_completed", "created_at"]
 
     def status_display(self):
-        return "Виконано" if self.is_completed else "У процесі"
+        return "Completed" if self.is_completed else "In progress"
 
     def status_class(self):
         return "active" if self.is_completed else "inactive"
@@ -32,7 +32,7 @@ class Task(models.Model):
     def clean(self):
         super().clean()
         if self.deadline <= timezone.now().date():
-            raise ValidationError({"deadline": "Дата виконання не може бути в минулому!"})
+            raise ValidationError({"deadline": "The due date cannot be in the past!"})
 
     def save(self, *args, **kwargs):
         self.full_clean()

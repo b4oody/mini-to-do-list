@@ -12,7 +12,7 @@
     </div>
     <form method="get" action="{% url 'core:home' %}">
       <div class="filter-section">
-        <label for="status-filter">Фільтр за статусом:</label>
+        <label for="status-filter">Filter by status:</label>
         <select name="status" onchange="this.form.submit()">
           {% for status_value, status_label in form.fields.status.choices %}
             <option value="{{ status_value }}"
@@ -38,7 +38,7 @@
           <span><strong>Created at:</strong>{{ task.created_at }}</span>
 
           <div style="margin-top: 10px">
-            <a class="update" href="{% url 'core:update-task' task.pk %}">Редагувати</a>
+            <a class="update" href="{% url 'core:update-task' task.pk %}">Update</a>
             <form action="{% url 'core:delete-task' task.id %}" method="post" style="display: inline;">
               {% csrf_token %}
               <button type="submit" class="delete">Delete</button>

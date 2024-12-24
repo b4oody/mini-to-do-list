@@ -1,9 +1,9 @@
 from django import forms
 
 STATUS_CHOICES = [
-    ("all", "Всі статуси"),
-    ("active", "Активні"),
-    ("completed", "Завершені"),
+    ("all", "All"),
+    ("active", "Active"),
+    ("completed", "Completed"),
 ]
 
 

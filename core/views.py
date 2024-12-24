@@ -10,15 +10,15 @@ from core.models import Task, Tag
 
 def pagination(request: HttpRequest, queryset, items_per_page=5):
     """
-    Функція для пагінації.
+    Pagination function.
 
-    Аргументи:
-    request: HttpRequest - об'єкт запиту.
-    queryset: QuerySet або список - дані, які потрібно розбити на сторінки.
-    items_per_page: int - кількість елементів на сторінку (за замовчуванням 5).
+    Arguments:
+    request: HttpRequest - request object.
+    queryset: QuerySet or list - data to be divided into pages.
+    items_per_page: int - number of items per page (default 5).
 
-    Повертає:
-        page_obj: об'єкт пагінації для шаблону.
+    Returns:
+    page_obj: pagination object for the template.
     """
     paginator = Paginator(queryset, items_per_page)
     page_number = request.GET.get("page")
