@@ -24,7 +24,6 @@ class TaskAdmin(admin.ModelAdmin):
         "content",
         "created_at",
         "deadline",
-
     ]
     search_fields = [
         "tags__name",
